@@ -9,7 +9,8 @@ export default function Home() {
             Cognitive Cards
           </div>
           <div className="mt-4 text-lg leading-relaxed text-gray-700">
-            Need help with studying or don't know what to study? Leverage the power of AI to study effectively for any topic!
+            Need help with studying or don&apos;t know what to study? Leverage
+            the power of AI to study effectively for any topic!
           </div>
           <div className="mt-8 flex flex-row gap-6 justify-center">
             <Link href="/sign-in">
