@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.7",
     "@supabase/ssr": "^0.4.0",
+    "@tanstack/react-query": "^5.51.23",
     "firebase": "^10.12.5",
     "next": "^14.2.5",
     "openai": "^4.55.5",

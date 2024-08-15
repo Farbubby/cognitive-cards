@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import QueryClientProviderWrapper from "@/components/query-client";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider afterSignOutUrl={"/sign-in"}>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
+      <QueryClientProviderWrapper>
+        <html lang="en">
+          <body>{children}</body>
+        </html>
+      </QueryClientProviderWrapper>
     </ClerkProvider>
   );
 }
