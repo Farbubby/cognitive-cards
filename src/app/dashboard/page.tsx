@@ -1,4 +1,5 @@
-"use client" // for useState
+"use client"; // for useState
+import { Chat } from "./../../components/chat";
 
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
@@ -57,20 +58,22 @@ export default function Home() {
             <h1 className="font-title text-2xl mb-4">Dashboard</h1>
             <p className="mb-6 text-sm">
               Welcome to your dashboard! Here you can monitor your activities
-              and manage your settings. 🧡 Need assistance? Just ask AI for help.
-              Happy exploring!
+              and manage your settings. 🧡 Need assistance? Just ask AI for
+              help. Happy exploring!
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="bg-neutral-100 rounded-md p-5 shadow transition-transform duration-300 ease-in-out transform hover:scale-105">
                 <h2 className="font-title text-lg mb-2">Overview</h2>
                 <p className="text-sm">
-                  Start creating flashcards and you will improve your cognitive ability and help ace your exams!
+                  Start creating flashcards and you will improve your cognitive
+                  ability and help ace your exams!
                 </p>
               </div>
               <div className="bg-neutral-100 rounded-md p-5 shadow transition-transform duration-300 ease-in-out transform hover:scale-105">
                 <h2 className="font-title text-lg mb-2">Settings</h2>
                 <p className="text-sm">
-                  Located top right of your screen. There you can modify your settings, logout, and other informations.
+                  Located top right of your screen. There you can modify your
+                  settings, logout, and other informations.
                 </p>
               </div>
             </div>
@@ -110,6 +113,10 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </div>
+      {/* Fixed chat component */}
+      <div className="absolute bottom-0 left-0 m-4">
+        <Chat />
       </div>
     </>
   );

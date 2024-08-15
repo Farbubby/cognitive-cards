@@ -1,16 +1,16 @@
 import Link from "next/link";
+import { Chat } from "./../components/chat";
 
 export default function Home() {
   return (
     <>
-      <div className="h-screen flex flex-col items-center justify-center gap-8 bg-custom-image bg-cover bg-center">
+      <div className="h-screen flex flex-col items-center justify-center gap-8 bg-custom-image bg-cover bg-center relative">
         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg text-center max-w-lg">
           <div className="text-5xl font-bold tracking-tight text-gray-800">
             Cognitive Cards
           </div>
           <div className="mt-4 text-lg leading-relaxed text-gray-700">
-            Need help with studying or don&apos;t know what to study? Leverage
-            the power of AI to study effectively for any topic!
+            Need help with studying or don't know what to study? Leverage the power of AI to study effectively for any topic!
           </div>
           <div className="mt-8 flex flex-row gap-6 justify-center">
             <Link href="/sign-in">
@@ -24,6 +24,11 @@ export default function Home() {
               </button>
             </Link>
           </div>
+        </div>
+
+        {/* Fixed chat component */}
+        <div className="absolute bottom-0 left-0 m-4">
+          <Chat />
         </div>
       </div>
     </>
