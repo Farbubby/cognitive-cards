@@ -1,3 +1,5 @@
+// Look at chat/route.ts, chatprompt/route.ts, component/schat.tsx
+
 import OpenAI from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 
