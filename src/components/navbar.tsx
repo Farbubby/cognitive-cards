@@ -3,7 +3,7 @@ import { UserButton } from "@clerk/nextjs";
 export default function Navbar() {
   return (
     <>
-      <div className="flex flex-row justify-end px-8 py-4">
+      <div className="flex flex-row justify-end px-8 py-4 fixed w-full">
         <UserButton
           appearance={{
             elements: {
