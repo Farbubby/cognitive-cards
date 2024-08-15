@@ -52,9 +52,19 @@ export default function TopicInput() {
               )}
             </button>
           </div>
-          {mutation.data?.fail && (
+          {mutation.data?.authError && (
             <div className="text-sm text-red-700 font-bold">
-              {mutation.data.fail}
+              {mutation.data.authError}
+            </div>
+          )}
+          {mutation.data?.fieldError && (
+            <div className="text-sm text-red-700 font-bold">
+              {mutation.data.fieldError}
+            </div>
+          )}
+          {mutation.data?.dbError && (
+            <div className="text-sm text-red-700 font-bold">
+              {mutation.data.dbError}
             </div>
           )}
           {mutation.data?.success && (
@@ -62,7 +72,6 @@ export default function TopicInput() {
               {mutation.data.success}
             </div>
           )}
-
           <div className="text-gray-700 text-sm font-bold">
             Tip: Narrow your topic to get specific questions!
           </div>

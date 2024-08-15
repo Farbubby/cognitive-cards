@@ -9,9 +9,8 @@ export async function getAllTopics() {
 
   if (!user) {
     return {
-      topics: null,
-      error: "Womp womp",
-      fail: "Unauthorized, please log in",
+      topics: [],
+      authError: "Unauthorized, please log in",
     };
   }
 
@@ -22,15 +21,14 @@ export async function getAllTopics() {
 
   if (error) {
     return {
-      topics: null,
+      topics: [],
       error,
-      fail: "Failed to fetch topics",
+      dbError: "Failed to fetch topics",
     };
   }
 
   return {
     topics: data,
-    error: null,
     success: "Topics fetched",
   };
 }

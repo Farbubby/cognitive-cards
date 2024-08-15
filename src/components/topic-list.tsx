@@ -22,8 +22,12 @@ export default function TopicList() {
     return <div>Something went wrong</div>;
   }
 
-  if (!query.data.topics) {
-    return <div>{query.data.fail}</div>;
+  if (query.data.authError) {
+    return <div>{query.data.authError}</div>;
+  }
+
+  if (query.data.dbError) {
+    return <div>{query.data.dbError}</div>;
   }
 
   if (query.data.topics.length === 0) {
