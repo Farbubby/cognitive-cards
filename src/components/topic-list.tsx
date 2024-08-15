@@ -34,7 +34,7 @@ export default function TopicList() {
 
   return (
     <>
-      <div>{topicsList}</div>
+      <div className="grid grid-cols-5 gap-4">{topicsList}</div>
     </>
   );
 }
