@@ -2,7 +2,6 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
-import { addTopic } from "@/server/topic/add";
 import { useState } from "react";
 
 export default function TopicInput() {
@@ -10,11 +9,31 @@ export default function TopicInput() {
   const [topic, setTopic] = useState("");
 
   const mutation = useMutation({
-    mutationFn: (topic: string) => addTopic(topic),
+    mutationFn: (topic: string) =>
+      fetch("/api/topic", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ topic }),
+      }).then(
+        (res) =>
+          res.json() as Promise<{
+            authError: string;
+            dbError: string;
+            fieldError: string;
+            success: string;
+          }>
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["topics"] });
     },
   });
+
+  const handleInput = () => {
+    mutation.mutate(topic);
+    setTopic("");
+  };
 
   return (
     <>
@@ -23,8 +42,7 @@ export default function TopicInput() {
           className="flex flex-col gap-2"
           onSubmit={(e) => {
             e.preventDefault();
-            mutation.mutate(topic);
-            setTopic("");
+            handleInput();
           }}>
           <label className="font-bold text-base">Pick a topic</label>
           <div className="flex flex-row gap-4">
