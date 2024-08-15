@@ -3,7 +3,7 @@ import { SignUp } from "@clerk/nextjs";
 export default function SignUpPage() {
   return (
     <>
-      <div className="h-screen flex flex-col items-center justify-center">
+      <div className="h-screen flex flex-col items-center justify-center gap-8 bg-custom-image bg-cover bg-center">
         <SignUp
           appearance={{
             elements: {
