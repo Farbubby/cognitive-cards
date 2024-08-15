@@ -11,7 +11,7 @@ export async function addTopic(topic: string) {
     return {
       topics: null,
       error: "Womp womp",
-      message: "Unauthorized, please log in",
+      fail: "Unauthorized, please log in",
     };
   }
 
@@ -19,7 +19,7 @@ export async function addTopic(topic: string) {
     return {
       topics: null,
       error: "Womp womp",
-      message: "Topic cannot be empty",
+      fail: "Topic cannot be empty",
     };
   }
 
@@ -32,13 +32,13 @@ export async function addTopic(topic: string) {
     return {
       topics: null,
       error,
-      message: "Failed to create topic",
+      fail: "Failed to create topic",
     };
   }
 
   return {
     topics: data,
     error: null,
-    message: "Topic created",
+    success: "Topic created",
   };
 }

@@ -11,7 +11,7 @@ export async function getAllTopics() {
     return {
       topics: null,
       error: "Womp womp",
-      message: "Unauthorized, please log in",
+      fail: "Unauthorized, please log in",
     };
   }
 
@@ -24,13 +24,13 @@ export async function getAllTopics() {
     return {
       topics: null,
       error,
-      message: "Failed to fetch topics",
+      fail: "Failed to fetch topics",
     };
   }
 
   return {
     topics: data,
     error: null,
-    message: "Topics fetched",
+    success: "Topics fetched",
   };
 }

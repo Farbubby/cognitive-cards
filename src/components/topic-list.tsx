@@ -23,6 +23,10 @@ export default function TopicList() {
   }
 
   if (!query.data.topics) {
+    return <div>{query.data.fail}</div>;
+  }
+
+  if (query.data.topics.length === 0) {
     return <div>Add a topic!</div>;
   }
 
