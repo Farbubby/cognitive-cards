@@ -15,9 +15,17 @@ export async function addTopic(topic: string) {
     };
   }
 
+  if (!topic) {
+    return {
+      topics: null,
+      error: "Womp womp",
+      message: "Topic cannot be empty",
+    };
+  }
+
   const { data, error } = await supabase
     .from("topics")
-    .insert({ user_id: user.id, topic })
+    .insert({ user_id: user.id, topic_name: topic })
     .select();
 
   if (error) {

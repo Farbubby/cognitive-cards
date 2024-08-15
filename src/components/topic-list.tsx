@@ -5,30 +5,32 @@ import TopicButton from "./topic-button";
 import { getAllTopics } from "@/server/topic/getAll";
 
 export default function TopicList() {
-  const { data, error, isLoading } = useQuery({
+  const query = useQuery({
     queryKey: ["topics"],
     queryFn: () => getAllTopics(),
   });
 
-  if (isLoading) {
+  if (query.isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  if (query.error) {
+    return <div>Error: {query.error.message}</div>;
   }
 
-  if (!data) {
+  if (!query.data) {
     return <div>Something went wrong</div>;
   }
 
-  if (!data.topics) {
+  if (!query.data.topics) {
     return <div>Add a topic!</div>;
   }
 
-  const topicsList = data.topics.map((val: any) => (
-    <TopicButton key={val.id} topic={val} />
-  ));
+  const topicsList = query.data.topics.map(
+    (val: { id: string; topic_name: string }) => (
+      <TopicButton key={val.id} topic={val.topic_name} />
+    )
+  );
 
   return (
     <>
