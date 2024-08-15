@@ -2,12 +2,19 @@
 
 import { useQuery } from "@tanstack/react-query";
 import TopicButton from "./topic-button";
-import { getAllTopics } from "@/server/topic/getAll";
 
 export default function TopicList() {
   const query = useQuery({
     queryKey: ["topics"],
-    queryFn: () => getAllTopics(),
+    queryFn: () =>
+      fetch("/api/topic").then(
+        (res) =>
+          res.json() as Promise<{
+            topics: any[];
+            authError: string;
+            dbError: string;
+          }>
+      ),
   });
 
   if (query.isLoading) {
