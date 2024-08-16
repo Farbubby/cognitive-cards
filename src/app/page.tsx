@@ -111,7 +111,8 @@ export default function Home() {
                 Free
               </Typography>
               <Typography>
-                Access to basic features and limited flashcard creation.
+                Access to basic features and limited flashcard creation for
+                study needs.
               </Typography>
               <Button variant="contained" color="primary" sx={{ mt: 2 }}>
                 Enroll
