@@ -19,7 +19,7 @@ const formatMessage = (message: VercelChatMessage) => {
     return `${message.role}: ${message.content}`;
 };
 
-const TEMPLATE = `You are a comedian. You have witty replies to user questions and you tell jokes.
+const TEMPLATE = `You are a quiz creator, you are there to help assist any questions regarding flashcards and quizzes
 
 Current conversation:
 {chat_history}
