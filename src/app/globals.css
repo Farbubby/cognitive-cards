@@ -18,13 +18,10 @@
 
 /* globals.css */
 .bg-custom-image {
-  background-image: url('/cognitive.jpg');
+  background-image: url("/cognitive.jpg");
   background-size: cover;
   background-position: center;
 }
-
-
-
 
 body {
   background-color: rgb(242, 210, 169);

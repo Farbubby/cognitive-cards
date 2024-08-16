@@ -8,7 +8,7 @@ import "./../webcrumbs.css";
 
 export default function Home() {
   const [isWebcrumbsOpen, setIsWebcrumbsOpen] = useState(false);
-  const webcrumbsRef = useRef(null);
+  const webcrumbsRef = useRef<HTMLDivElement>(null);
 
   // Toggle webcrumbs open/close
   const toggleWebcrumbs = () => {
@@ -16,7 +16,7 @@ export default function Home() {
   };
 
   // Handle outside click to close webcrumbs
-  const handleClickOutside = (event) => {
+  const handleClickOutside = (event: { target: any }) => {
     if (webcrumbsRef.current && !webcrumbsRef.current.contains(event.target)) {
       setIsWebcrumbsOpen(false);
     }
