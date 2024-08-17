@@ -9,7 +9,7 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.
 //Give chatgpt api a prompt for api call
 const systemPrompt = `
 You are a flashcard creator, you take in terms and create multiple flashcards from it. Make sure to create exactly as many flashcards as there are terms.
-The front should be the term and the back should be the single sentence definition of the term.
+The front should be the term and the back should be the 40 word definition of the term.
 You should return in the following JSON format:
 {
   "flashcards":[
