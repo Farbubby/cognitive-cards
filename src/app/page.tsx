@@ -148,8 +148,13 @@ export default function Home() {
                   Access to basic features and limited flashcard creation for
                   study needs.
                 </Typography>
-                <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-                  Enroll
+                <Button
+                  disabled={true}
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 2 }}
+                >
+                  Enrolled
                 </Button>
               </Box>
             </Grid>
@@ -173,7 +178,7 @@ export default function Home() {
                   ability to help you study effectively.
                 </Typography>
                 <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-                  Enroll
+                  Choose Pro
                 </Button>
               </Box>
             </Grid>
@@ -197,7 +202,7 @@ export default function Home() {
                   to test your understanding.
                 </Typography>
                 <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-                  Enroll
+                  Choose Ultimate
                 </Button>
               </Box>
             </Grid>
