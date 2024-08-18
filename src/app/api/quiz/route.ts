@@ -115,10 +115,10 @@ export async function GET(req: NextRequest) {
 
   if (error) {
     return NextResponse.json(
-      { error: "Failed to fetch quiz questions" },
+      { dbError: "Failed to fetch quiz questions" },
       { status: 500 }
     );
   }
 
-  return NextResponse.json(data);
+  return NextResponse.json(data[0]);
 }
