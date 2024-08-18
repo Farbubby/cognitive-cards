@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import McqCard from "@/components/mcq-card";
 
 export default function Home({ params }: { params: { topic: string } }) {
   const query = useQuery({
@@ -48,23 +49,23 @@ export default function Home({ params }: { params: { topic: string } }) {
   }
 
   const quizQuestions = query.data.quizQuestions.questions.map((question) => {
-    const choices = question.choices.map((choice) => (
-      <>
-        <div>
-          {choice.id}. {choice.content}
-        </div>
-      </>
-    ));
+    const choices = question.choices.map((choice) => {
+      return choice.id + ". " + choice.content;
+    });
     return (
       <>
-        <div className="text-black flex flex-col gap-4">
-          <div>{question.prompt}</div>
-          <div>{choices}</div>
-          <div>Answer: {question.answer}</div>
-        </div>
+        <McqCard
+          question={question.prompt}
+          options={choices}
+          answer={question.answer[0][0]}
+        />
       </>
     );
   });
 
-  return <>{quizQuestions}</>;
+  return (
+    <>
+      <div className="flex flex-col gap-4">{quizQuestions}</div>
+    </>
+  );
 }

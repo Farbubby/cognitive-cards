@@ -8,7 +8,7 @@ export default function PageLayout({
   return (
     <>
       <Navbar />
-      <div className="pt-20 px-8">{children}</div>
+      <div className="pt-20 px-8 pb-8">{children}</div>
     </>
   );
 }
