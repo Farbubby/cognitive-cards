@@ -10,16 +10,18 @@ export default function Home({ params }: { params: { topic: string } }) {
       fetch(`/api/quiz/?topic=${params.topic}`).then(
         (res) =>
           res.json() as Promise<{
-            quizQuestions: {
-              questions: {
-                prompt: string;
-                choices: {
-                  id: string;
-                  content: string;
+            result: {
+              quizQuestions: {
+                questions: {
+                  prompt: string;
+                  choices: {
+                    id: string;
+                    content: string;
+                  }[];
+                  answer: string[][];
                 }[];
-                answer: string[][];
-              }[];
-            };
+              };
+            }[];
             authError: string;
             dbError: string;
           }>
@@ -44,24 +46,30 @@ export default function Home({ params }: { params: { topic: string } }) {
     return <>{query.data.dbError}</>;
   }
 
-  if (query.data.quizQuestions.questions.length === 0) {
+  if (!query.data.result) {
+    return <>Something went wrong</>;
+  }
+
+  if (query.data.result.length === 0) {
     return <>Generate some questions!</>;
   }
 
-  const quizQuestions = query.data.quizQuestions.questions.map((question) => {
-    const choices = question.choices.map((choice) => {
-      return choice.id + ". " + choice.content;
-    });
-    return (
-      <>
-        <McqCard
-          question={question.prompt}
-          options={choices}
-          answer={question.answer[0][0]}
-        />
-      </>
-    );
-  });
+  const quizQuestions = query.data.result[0].quizQuestions.questions.map(
+    (question) => {
+      const choices = question.choices.map((choice) => {
+        return choice.id + ". " + choice.content;
+      });
+      return (
+        <>
+          <McqCard
+            question={question.prompt}
+            options={choices}
+            answer={question.answer[0][0]}
+          />
+        </>
+      );
+    }
+  );
 
   return (
     <>

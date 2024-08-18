@@ -109,7 +109,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await supabase
     .from("quizzes")
-    .select()
+    .select("quizQuestions")
     .eq("userid", user.id)
     .eq("topic", topic);
 
@@ -120,5 +120,5 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  return NextResponse.json(data[0]);
+  return NextResponse.json({ result: data });
 }
