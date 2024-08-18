@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   // Insert flashcards into Supabase (rn RLS on supabase is off)
   const { data, error } = await supabase
     .from("flashcards")
-    .upsert({
+    .insert({
       userid: user.id,
       topic,
       flashcards,
