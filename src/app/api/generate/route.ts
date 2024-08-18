@@ -3,25 +3,19 @@ import { currentUser } from "@clerk/nextjs/server";
 import { createClient } from "@/supabase/server";
 import OpenAI from "openai";
 
-//Same functionality of generate route.js but for making mc quiz questions and answers
+//Give chatgpt api a prompt for api call
 const systemPrompt = `
-You are a quiz creator. Given a piece of text, generate exactly 10 unique multiple-choice questions based on the most important information from the text. Each question should have four answer choices and one correct answer. Make sure that each question is unique.
-
-Return the questions in the following JSON format:
+You are a flashcard creator, you take in terms and create multiple flashcards from it. Make sure to create exactly 10 unique flashcards.
+The front should be the term and the back should be the 40 word definition of the term.
+You should return in the following JSON format:
 {
-    "questions": [
-        {
-            "prompt": "What is the color of the sky?",
-            "choices": [
-                {"id": "a", "content": "Red"},
-                {"id": "b", "content": "Blue"},
-                {"id": "c", "content": "Green"},
-                {"id": "d", "content": "Pink"}
-            ],
-            "answer": [["b"]]
-        }
-        // Include 9 more unique questions
-    ]
+  "flashcards":[
+    {
+      "front": "Front of the card",
+      "back": "Back of the card"
+    }
+    // Include 9 more unique questions
+  ]
 }
 `;
 
@@ -50,36 +44,32 @@ export async function POST(req: NextRequest) {
 
   if (!completion.choices[0].message.content) {
     return NextResponse.json(
-      { error: "Failed to generate quiz questions" },
+      { error: "Failed to generate flashcards" },
       { status: 500 }
     );
   }
 
-  const quizQuestions = JSON.parse(completion.choices[0].message.content) as {
-    questions: {
-      prompt: string;
-      choices: {
-        id: string;
-        content: string;
-      }[];
-      answer: string[][];
+  const flashcards = JSON.parse(completion.choices[0].message.content) as {
+    flashcards: {
+      front: string;
+      back: string;
     }[];
   };
 
   // Insert flashcards into Supabase (rn RLS on supabase is off)
   const { data, error } = await supabase
-    .from("quizzes")
+    .from("flashcards")
     .upsert({
       userid: user.id,
       topic,
-      quizQuestions,
+      flashcards,
     })
     .select();
 
   if (error) {
-    console.error("Error inserting quiz questions:", error);
+    console.error("Error inserting flashcards:", error);
     return NextResponse.json(
-      { error: "Failed to save quiz questions" },
+      { error: "Failed to save flashcards" },
       { status: 500 }
     );
   }
@@ -108,14 +98,14 @@ export async function GET(req: NextRequest) {
   }
 
   const { data, error } = await supabase
-    .from("quizzes")
-    .select("quizQuestions")
+    .from("flashcards")
+    .select("flashcards")
     .eq("userid", user.id)
     .eq("topic", topic);
 
   if (error) {
     return NextResponse.json(
-      { dbError: "Failed to fetch quiz questions" },
+      { dbError: "Failed to fetch flashcards" },
       { status: 500 }
     );
   }
