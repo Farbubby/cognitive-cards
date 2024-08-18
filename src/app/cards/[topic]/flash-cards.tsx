@@ -109,7 +109,7 @@ export default function Home({ topic }: FlashcardProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-4">{flashcards}</div>
+      <div className="flex flex-wrap gap-4">{flashcards}</div>
     </>
   );
 }

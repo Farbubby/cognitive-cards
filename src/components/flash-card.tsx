@@ -5,7 +5,7 @@ interface FlashCardProps {
 
 export default function McqCard({ front, back }: FlashCardProps) {
   return (
-    <div className="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-lg text-black w-fit">
+    <div className="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-lg text-black w-fit max-w-sm">
       <div>{front}</div>
       <div>Answer: {back}</div>
     </div>
