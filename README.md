@@ -2,7 +2,7 @@
 
 This is an application that you can use to generate flahscards of any topic of your choosing. Simply, type in the topic you want to learn more about and with the help of AI, the application will generate 10 flashcards related to that topic. The purpose of this applicaiton is to make the process of creating flashcards quicker and to study in a fun way.
 
-You can check out application live here:
+You can check out application live here: https://cognitive-cards.vercel.app/
 
 To run the application locally on your device, follow below steps:
 
