@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-//import getStripe from "../utils/get-stripe";
-import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
+import { Chat } from "./../components/chat";
 import {
   AppBar,
   Button,
@@ -13,12 +12,21 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import Head from "next/head";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 
 const theme = createTheme({
   typography: {
     fontFamily: ["Roboto"].join(","),
+  },
+  palette: {
+    primary: {
+      main: "#1976d2",
+    },
+    secondary: {
+      main: "#8B4513",
+    },
   },
 });
 
@@ -41,7 +49,7 @@ export default function Home() {
       <ThemeProvider theme={theme}>
         <Head>
           <title>Cognitive Cards</title>
-          <meta name="description" content="Create flashcard from your text" />
+          <meta name="description" content="Create flashcards from your text" />
         </Head>
 
         <AppBar
@@ -97,9 +105,8 @@ export default function Home() {
                 Comprehensive explanation of terms
               </Typography>
               <Typography>
-                {" "}
                 Simply input your text and let our application come up with
-                detailed explanation
+                detailed explanations.
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -107,9 +114,8 @@ export default function Home() {
                 Quiz yourself to check your understanding
               </Typography>
               <Typography>
-                {" "}
                 With the help of AI, our application creates tailored quizzes
-                based on your topic of study
+                based on your topic of study.
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -117,7 +123,6 @@ export default function Home() {
                 Mobile friendly
               </Typography>
               <Typography>
-                {" "}
                 Access your flashcards from any device, at any time. Study on
                 the go with ease!
               </Typography>
@@ -134,7 +139,7 @@ export default function Home() {
                 sx={{
                   p: 3,
                   border: "2px solid",
-                  borderColor: "grey 300",
+                  borderColor: "grey.300",
                   backgroundColor: "burlywood",
                 }}
               >
@@ -163,7 +168,7 @@ export default function Home() {
                 sx={{
                   p: 3,
                   border: "2px solid",
-                  borderColor: "grey 300",
+                  borderColor: "grey.300",
                   backgroundColor: "lightgrey",
                 }}
               >
@@ -174,8 +179,8 @@ export default function Home() {
                   $2/month
                 </Typography>
                 <Typography>
-                  Access to basic features and unlimited flashcard generation
-                  ability to help you study effectively.
+                  Access to basic features and unlimited flashcard generation to
+                  help you study effectively.
                 </Typography>
                 <Button variant="contained" color="primary" sx={{ mt: 2 }}>
                   Choose Pro
@@ -187,7 +192,7 @@ export default function Home() {
                 sx={{
                   p: 3,
                   border: "2px solid",
-                  borderColor: "grey 300",
+                  borderColor: "grey.300",
                   backgroundColor: "gold",
                 }}
               >
@@ -209,6 +214,17 @@ export default function Home() {
           </Grid>
         </Box>
       </ThemeProvider>
+      {/* Fixed chat component */}
+      <Box
+        sx={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+          zIndex: 1000,
+        }}
+      >
+        <Chat />
+      </Box>
     </>
   );
 }
