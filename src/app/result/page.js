@@ -79,10 +79,7 @@ const ResultPage = () => {
 
   return (
     <>
-      <AppBar
-        position="static"
-        style={{ width: "100vw", backgroundColor: "#8B4513" }}
-      >
+      <AppBar position="static" style={{ width: "100vw" }}>
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             Cognitive Cards
@@ -99,6 +96,16 @@ const ResultPage = () => {
           <Button color="inherit" href="/">
             Home
           </Button>
+          <SignedIn>
+            <Button color="inherit" onClick={() => router.push("/generate")}>
+              Generate
+            </Button>
+          </SignedIn>
+          <SignedIn>
+            <Button color="inherit" href="/flashcards">
+              Sets
+            </Button>
+          </SignedIn>
         </Toolbar>
       </AppBar>
 
