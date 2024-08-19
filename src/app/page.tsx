@@ -1,6 +1,6 @@
 "use client";
-import Image from "next/image";
-import { Chat } from "./../components/chat";
+import getStripe from "../../utils/get-stripe";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import {
   AppBar,
   Button,
@@ -12,7 +12,6 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import Head from "next/head";
-import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 
@@ -20,17 +19,40 @@ const theme = createTheme({
   typography: {
     fontFamily: ["Roboto"].join(","),
   },
-  palette: {
-    primary: {
-      main: "#1976d2",
-    },
-    secondary: {
-      main: "#8B4513",
-    },
-  },
 });
 
 export default function Home() {
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("/api/checkout_session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        // Handle error response
+        const errorData = await response.json();
+        console.error("Error creating checkout session:", errorData.message);
+        return;
+      }
+
+      const checkoutSessionJson = await response.json();
+
+      const stripe = await getStripe();
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: checkoutSessionJson.id,
+      });
+
+      if (error) {
+        console.warn("Stripe error:", error.message);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+    }
+  };
+
   const { isLoaded, isSignedIn } = useUser();
   const router = useRouter();
 
@@ -49,7 +71,7 @@ export default function Home() {
       <ThemeProvider theme={theme}>
         <Head>
           <title>Cognitive Cards</title>
-          <meta name="description" content="Create flashcards from your text" />
+          <meta name="description" content="Create flashcard from your text" />
         </Head>
 
         <AppBar
@@ -106,7 +128,7 @@ export default function Home() {
               </Typography>
               <Typography>
                 Simply input your text and let our application come up with
-                detailed explanations.
+                detailed explanation
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -115,7 +137,7 @@ export default function Home() {
               </Typography>
               <Typography>
                 With the help of AI, our application creates tailored quizzes
-                based on your topic of study.
+                based on your topic of study
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -129,18 +151,19 @@ export default function Home() {
             </Grid>
           </Grid>
         </Box>
+
         <Box sx={{ my: 6, mx: 4, textAlign: "center" }}>
           <Typography variant="h4" gutterBottom>
             Membership Plans
           </Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
+          <Grid container spacing={4} direction="column" alignItems="center">
+            <Grid item xs={12} md={8}>
               <Box
                 sx={{
                   p: 3,
                   border: "2px solid",
-                  borderColor: "grey.300",
-                  backgroundColor: "burlywood",
+                  borderColor: "grey 300",
+                  backgroundColor: "lightgrey",
                 }}
               >
                 <Typography variant="h5" gutterBottom>
@@ -163,68 +186,38 @@ export default function Home() {
                 </Button>
               </Box>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={8}>
               <Box
                 sx={{
                   p: 3,
                   border: "2px solid",
-                  borderColor: "grey.300",
-                  backgroundColor: "lightgrey",
+                  borderColor: "grey 300",
+                  backgroundColor: "gold",
                 }}
               >
                 <Typography variant="h5" gutterBottom>
                   Pro
                 </Typography>
                 <Typography variant="h6" gutterBottom>
-                  $2/month
+                  $10/month
                 </Typography>
                 <Typography>
-                  Access to basic features and unlimited flashcard generation to
-                  help you study effectively.
+                  Access to basic features and unlimited flashcard generation
+                  ability to help you study effectively.
                 </Typography>
-                <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 2 }}
+                  onClick={handleSubmit}
+                >
                   Choose Pro
-                </Button>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Box
-                sx={{
-                  p: 3,
-                  border: "2px solid",
-                  borderColor: "grey.300",
-                  backgroundColor: "gold",
-                }}
-              >
-                <Typography variant="h5" gutterBottom>
-                  Ultimate
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  $6/month
-                </Typography>
-                <Typography>
-                  Includes everything in basic and pro. Exclusive quiz feature
-                  to test your understanding.
-                </Typography>
-                <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-                  Choose Ultimate
                 </Button>
               </Box>
             </Grid>
           </Grid>
         </Box>
       </ThemeProvider>
-      {/* Fixed chat component */}
-      <Box
-        sx={{
-          position: "fixed",
-          bottom: 16,
-          right: 16,
-          zIndex: 1000,
-        }}
-      >
-        <Chat />
-      </Box>
     </>
   );
 }
