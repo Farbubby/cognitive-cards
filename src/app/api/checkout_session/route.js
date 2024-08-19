@@ -23,7 +23,8 @@ export async function GET(req, { params }) {
 }
 export async function POST(req) {
   try {
-    const origin = "http://localhost:3000";
+    const origin =
+      "https://cognitive-cards.vercel.app/" || "http://localhost:3000";
 
     const params = {
       mode: "subscription",
