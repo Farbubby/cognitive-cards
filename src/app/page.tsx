@@ -73,35 +73,11 @@ export default function Home() {
           <title>Cognitive Cards</title>
           <meta name="description" content="Create flashcard from your text" />
         </Head>
-
-        <AppBar
-          position="static"
-          style={{ width: "100vw", backgroundColor: "#8B4513" }}
-        >
-          <Toolbar>
-            <Typography variant="h6" style={{ flexGrow: 1 }}>
-              Cognitive Cards
-            </Typography>
-            <SignedOut>
-              <Button color="inherit" href="/sign-in">
-                Login
-              </Button>
-              <Button color="inherit" href="/sign-up">
-                Sign Up
-              </Button>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </Toolbar>
-        </AppBar>
-
         <Box
           sx={{
             textAlign: "center",
             my: 4,
-          }}
-        >
+          }}>
           <Typography variant="h2" gutterBottom>
             Welcome to Cognitive Cards
           </Typography>
@@ -112,8 +88,7 @@ export default function Home() {
             variant="contained"
             color="primary"
             sx={{ mt: 2 }}
-            onClick={handleGetStartedClick}
-          >
+            onClick={handleGetStartedClick}>
             Get Started
           </Button>
         </Box>
@@ -164,8 +139,7 @@ export default function Home() {
                   border: "2px solid",
                   borderColor: "grey 300",
                   backgroundColor: "lightgrey",
-                }}
-              >
+                }}>
                 <Typography variant="h5" gutterBottom>
                   Basic
                 </Typography>
@@ -180,8 +154,7 @@ export default function Home() {
                   disabled={true}
                   variant="contained"
                   color="primary"
-                  sx={{ mt: 2 }}
-                >
+                  sx={{ mt: 2 }}>
                   Enrolled
                 </Button>
               </Box>
@@ -193,8 +166,7 @@ export default function Home() {
                   border: "2px solid",
                   borderColor: "grey 300",
                   backgroundColor: "gold",
-                }}
-              >
+                }}>
                 <Typography variant="h5" gutterBottom>
                   Pro
                 </Typography>
@@ -209,8 +181,7 @@ export default function Home() {
                   variant="contained"
                   color="primary"
                   sx={{ mt: 2 }}
-                  onClick={handleSubmit}
-                >
+                  onClick={handleSubmit}>
                   Choose Pro
                 </Button>
               </Box>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import QueryClientProviderWrapper from "@/components/query-client";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,10 @@ export default function RootLayout({
     <ClerkProvider afterSignOutUrl={"/"}>
       <QueryClientProviderWrapper>
         <html lang="en">
-          <body>{children}</body>
+          <body>
+            <Navbar />
+            {children}
+          </body>
         </html>
       </QueryClientProviderWrapper>
     </ClerkProvider>
