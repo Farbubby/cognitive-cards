@@ -168,7 +168,7 @@ export default function Home() {
                   backgroundColor: "gold",
                 }}>
                 <Typography variant="h5" gutterBottom>
-                  Pro
+                  Pro (IN DEVELOPMENT)
                 </Typography>
                 <Typography variant="h6" gutterBottom>
                   $10/month
