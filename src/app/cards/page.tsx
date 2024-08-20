@@ -1,6 +1,7 @@
 import TopicInput from "@/components/topic-input";
 import TopicList from "@/components/topic-list";
 import LinkButton from "@/components/link-button";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <TopicInput />
         <TopicList />
       </div>
+      <Footer />
     </>
   );
 }
