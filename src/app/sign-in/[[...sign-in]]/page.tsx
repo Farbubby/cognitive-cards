@@ -3,7 +3,7 @@ import { SignIn } from "@clerk/nextjs";
 export default function SignInPage() {
   return (
     <>
-      <div className="h-screen flex flex-col items-center justify-center gap-8 bg-custom-image bg-cover bg-center">
+      <div className="flex flex-col items-center justify-center gap-8">
         <SignIn
           appearance={{
             elements: {

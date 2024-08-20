@@ -49,7 +49,9 @@ export default function TopicList() {
 
   return (
     <>
-      <div className="grid grid-cols-5 gap-4">{topicsList}</div>
+      <div className="grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-1 gap-4">
+        {topicsList}
+      </div>
     </>
   );
 }

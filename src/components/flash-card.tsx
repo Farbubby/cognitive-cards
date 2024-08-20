@@ -14,24 +14,21 @@ export default function FlashCard({ front, back }: FlashCardProps) {
 
   return (
     <div
-      className={`relative w-64 h-40 cursor-pointer transition-transform transform ${
+      className={`relative h-56 cursor-pointer transition-transform transform ${
         isFlipped ? "rotate-y-180" : ""
       }`}
-      onClick={handleFlip}
-    >
+      onClick={handleFlip}>
       <div className="absolute inset-0 w-full h-full">
         <div
           className={`w-full h-full bg-white rounded-lg shadow-lg text-black flex items-center justify-center p-4 ${
             isFlipped ? "hidden" : "block"
-          }`}
-        >
+          }`}>
           {front}
         </div>
         <div
           className={`w-full h-full bg-white rounded-lg shadow-lg text-black flex items-center justify-center p-4 ${
             isFlipped ? "block" : "hidden"
-          } rotate-y-180`}
-        >
+          } rotate-y-180`}>
           {back}
         </div>
       </div>

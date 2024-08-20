@@ -21,7 +21,7 @@ export default function RootLayout({
     <ClerkProvider afterSignOutUrl={"/"}>
       <QueryClientProviderWrapper>
         <html lang="en">
-          <body>
+          <body className="mt-20 pb-8 px-8">
             <Navbar />
             {children}
           </body>
