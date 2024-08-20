@@ -49,8 +49,11 @@ export default function TopicList() {
 
   return (
     <>
-      <div className="grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-1 gap-4">
-        {topicsList}
+      <div className="flex flex-col gap-2">
+        <h1 className="font-bold">Click a topic to see the flashcards</h1>
+        <div className="grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-1 gap-4">
+          {topicsList}
+        </div>
       </div>
     </>
   );
