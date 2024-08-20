@@ -55,8 +55,7 @@ const ResultPage = () => {
         sx={{
           textAlign: "center",
           mt: 4,
-        }}
-      >
+        }}>
         <CircularProgress />
         <Typography variant="h6">Loading...</Typography>
       </Container>
@@ -70,8 +69,7 @@ const ResultPage = () => {
         sx={{
           textAlign: "center",
           mt: 4,
-        }}
-      >
+        }}>
         <Typography variant="h6">{error}</Typography>
       </Container>
     );
@@ -79,43 +77,12 @@ const ResultPage = () => {
 
   return (
     <>
-      <AppBar position="static" style={{ width: "100vw" }}>
-        <Toolbar>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
-            Cognitive Cards
-          </Typography>
-          <SignedOut>
-            <Button color="inherit" href="/sign-in">
-              Login
-            </Button>
-            <Button color="inherit" href="/sign-up">
-              Sign Up
-            </Button>
-          </SignedOut>
-          <UserButton />
-          <Button color="inherit" href="/">
-            Home
-          </Button>
-          <SignedIn>
-            <Button color="inherit" onClick={() => router.push("/generate")}>
-              Generate
-            </Button>
-          </SignedIn>
-          <SignedIn>
-            <Button color="inherit" href="/flashcards">
-              Sets
-            </Button>
-          </SignedIn>
-        </Toolbar>
-      </AppBar>
-
       <Container
         maxWidth="100vw"
         sx={{
           textAlign: "center",
           mt: 4,
-        }}
-      >
+        }}>
         {session.payment_status === "paid" ? (
           <>
             <Typography variant="h4">Happy Learning!</Typography>
